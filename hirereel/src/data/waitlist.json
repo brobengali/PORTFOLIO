@@ -1,0 +1,27 @@
+{
+  "entries": [
+    {
+      "id": "wl-demo-1",
+      "email": "maya@studio.dev",
+      "role": "freelancer",
+      "referralCode": "HR-MAYA8K",
+      "createdAt": "2026-08-12T09:00:00.000Z"
+    },
+    {
+      "id": "wl-demo-2",
+      "email": "arjun@hireops.io",
+      "role": "client",
+      "referralCode": "HR-ARJN21",
+      "referredBy": "HR-MAYA8K",
+      "createdAt": "2026-08-18T14:22:00.000Z"
+    },
+    {
+      "id": "f2c93270-fce8-416c-b706-32f89d628e61",
+      "email": "rahul@hirereel.dev",
+      "role": "freelancer",
+      "referralCode": "HR-RAHUHW",
+      "referredBy": "HR-MAYA8K",
+      "createdAt": "2026-09-17T18:41:37.805Z"
+    }
+  ]
+}

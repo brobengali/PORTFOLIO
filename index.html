@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rahul Sharma // Distributed Systems Engineer & Backend Architect</title>
+  <meta name="description" content="Portfolio of Rahul Sharma — Lead Distributed Systems & Backend Engineer. Indian Spice Market meets Dev Terminal fusion portfolio.">
+  
+  <!-- Typography Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  
+  <!-- Design System -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       TERMINAL TOP BAR & CHROME
+       ======================================================================== -->
+  <header class="terminal-header" id="navbar">
+    <div class="terminal-header-inner">
+      <div class="terminal-brand">
+        <div class="terminal-dots">
+          <span class="terminal-dot dot-red" title="SIGINT / Close"></span>
+          <span class="terminal-dot dot-yellow" title="SIGTSTP / Minimize"></span>
+          <span class="terminal-dot dot-green" title="SIGCONT / Expand"></span>
+        </div>
+        <div class="terminal-prompt-label">
+          <span class="host">user@masala-station</span>:<span class="path">~/portfolio</span><span class="branch">(main)</span>
+        </div>
+        <div class="status-badge">
+          <span class="status-pulse"></span>
+          <span>open to work</span>
+        </div>
+      </div>
+
+      <nav aria-label="Main Navigation">
+        <button class="mobile-nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu">[MENU ☰]</button>
+        <ul class="nav-links" id="navLinks">
+          <li class="nav-item"><a href="#hero"><span class="nav-index">01.</span>whoami</a></li>
+          <li class="nav-item"><a href="#skills"><span class="nav-index">02.</span>stack</a></li>
+          <li class="nav-item"><a href="#projects"><span class="nav-index">03.</span>recipes</a></li>
+          <li class="nav-item"><a href="#experience"><span class="nav-index">04.</span>git-log</a></li>
+          <li class="nav-item"><a href="#activity"><span class="nav-index">05.</span>dispatch</a></li>
+          <li class="nav-item"><a href="#about"><span class="nav-index">06.</span>about</a></li>
+          <li class="nav-item"><a href="#contact"><span class="nav-index">07.</span>chit</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION: WHOAMI & BOOT CONSOLE
+         ====================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-backdrop" aria-hidden="true"></div>
+      <div class="hero-overlay-grain" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <!-- Hero Left / Pitch -->
+        <div class="hero-main">
+          <div class="ledger-serial-tag">
+            <svg class="seal-icon" viewBox="0 0 24 24"><path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z"/></svg>
+            <span>BATCH #IN-2026 // DISTRIBUTED LEDGER CERTIFIED</span>
+          </div>
+
+          <h1 class="hero-title">
+            Architecting Systems with <span class="title-italic">High Heat</span> & Zero Tolerance.
+          </h1>
+
+          <p class="hero-tagline">
+            I'm <strong>Rahul Sharma</strong>, a Lead Backend & Distributed Systems Engineer. 
+            Much like a master spice merchant balancing sharp pungency with subtle warmth, I design 
+            <strong class="highlight-chili">low-latency network runtimes</strong>, fault-tolerant state machines, 
+            and zero-copy data pipelines built for brutal production traffic.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">
+              <span>[ DISPATCH CONTRACT ↗ ]</span>
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              <span>[ BROWSE RECIPES ↓ ]</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right / Interactive Dev Terminal Console -->
+        <div class="terminal-console-box">
+          <div class="terminal-console-titlebar">
+            <span class="title-text">session: tty1 // zsh (x86_64-linux)</span>
+            <span>UTF-8 • 24-bit</span>
+          </div>
+
+          <div class="terminal-console-body" id="heroTerminalOutput">
+            <div class="terminal-log-line">
+              <span class="cmd-prompt">❯</span><span class="cmd-text">whoami</span>
+              <div class="cmd-output">
+                rahul-sharma // Staff Backend & Distributed Engines Architect<br>
+                Location: Bengaluru, India [IST // UTC+5:30]<br>
+                Focus: Rust, Go, Concurrency, Raft Consensus, Storage Engines
+              </div>
+            </div>
+
+            <div class="terminal-log-line">
+              <span class="cmd-prompt">❯</span><span class="cmd-text">cat /proc/system/status</span>
+              <div class="cmd-output">
+                <span class="highlight-green">● STATUS: OPEN_FOR_HIRE</span><br>
+                Availability: Full-time Staff Roles & High-Impact Consulting<br>
+                SLA: 99.995% delivery rate • Zero P1 security regressions
+              </div>
+            </div>
+
+            <div class="terminal-log-line">
+              <span class="cmd-prompt">❯</span><span class="cmd-text">ls -la ./specialties</span>
+              <div class="cmd-output">
+                drwx------ 4 user root 4096 <span class="highlight-gold">distributed-storage/</span><br>
+                drwx------ 6 user root 4096 <span class="highlight-gold">zero-copy-event-brokers/</span><br>
+                drwx------ 8 user root 4096 <span class="highlight-gold">consensus-and-wal/</span><br>
+                -rwxr-xr-x 1 user root  512 <span class="highlight-red">p99-tail-latency-slasher.sh*</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="terminal-input-row" id="terminalCliForm" autocomplete="off">
+            <span class="terminal-input-prompt">guest@masala:~$</span>
+            <input type="text" id="terminalCliInput" class="terminal-cli-input" placeholder="type 'help', 'skills', 'projects', or 'clear'..." spellcheck="false">
+          </form>
+
+          <div class="terminal-quick-chips">
+            <span>shortcuts:</span>
+            <button type="button" class="quick-cmd-btn" data-cmd="whoami">whoami</button>
+            <button type="button" class="quick-cmd-btn" data-cmd="skills">skills</button>
+            <button type="button" class="quick-cmd-btn" data-cmd="projects">projects</button>
+            <button type="button" class="quick-cmd-btn" data-cmd="git log">git log</button>
+            <button type="button" class="quick-cmd-btn" data-cmd="contact">contact</button>
+            <button type="button" class="quick-cmd-btn" data-cmd="clear">clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="section-divider container">
+      <span class="line"></span>
+      <div class="motif">
+        <span>❖</span>
+        <span>BENCHMARK GRADE INVENTORY</span>
+        <span>❖</span>
+      </div>
+      <span class="line"></span>
+    </div>
+
+    <!-- ======================================================================
+         SECTION 02: TECH STACK / THE SPICE TIN RACK ($ cat stack.json)
+         ====================================================================== -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header-block">
+          <div class="section-cmd-label">
+            <span class="bracket">[02]</span>
+            <span>$ cat /etc/spicetins.conf // manifest-v4.2</span>
+          </div>
+          <h2 class="section-title">The Spice Tin Inventory</h2>
+          <p class="section-desc">
+            Hardened tools classified by volatility and pungency. Every technology in this ledger has survived multi-terabyte production loads and 3:00 AM pager rotations.
+          </p>
+        </div>
+
+        <div class="stack-rack-grid">
+          <!-- Tin 1: Base Spices (Languages) -->
+          <div class="spice-tin-card category-languages">
+            <div class="tin-card-header">
+              <span class="tin-card-title">Base Spices // Languages</span>
+              <span class="tin-batch-number">[TIN-01]</span>
+            </div>
+            <div class="tin-items-list">
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Rust</span>
+                <span class="tin-spec">Zero-Cost • Tokio • Serde</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Go (Golang)</span>
+                <span class="tin-spec">Goroutines • Channels • stdlib</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>TypeScript</span>
+                <span class="tin-spec">Strict • Node/Bun • ASTs</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>C++ (20/23)</span>
+                <span class="tin-spec">Memory Arenas • SIMD • Cache Lines</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Python</span>
+                <span class="tin-spec">Profiling • PyO3 • Tooling</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tin 2: Tadka & Infusions (Backend & Runtime) -->
+          <div class="spice-tin-card category-backend">
+            <div class="tin-card-header">
+              <span class="tin-card-title">Tadka // Runtimes & RPC</span>
+              <span class="tin-batch-number">[TIN-02]</span>
+            </div>
+            <div class="tin-items-list">
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>gRPC & Protobuf</span>
+                <span class="tin-spec">Streaming • Codegen • HTTP/2</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Tokio & Actix</span>
+                <span class="tin-spec">Async IO • Epoll • Work-Stealing</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Node.js & Bun</span>
+                <span class="tin-spec">V8 Internals • Event Loop</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>GraphQL Engine</span>
+                <span class="tin-spec">Federation • Dataloader • Schema</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>WebSockets & SSE</span>
+                <span class="tin-spec">Sub-10ms Live Feeds</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tin 3: Cold Cellar (Databases & Storage) -->
+          <div class="spice-tin-card category-storage">
+            <div class="tin-card-header">
+              <span class="tin-card-title">Cold Cellar // Storage & WAL</span>
+              <span class="tin-batch-number">[TIN-03]</span>
+            </div>
+            <div class="tin-items-list">
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>PostgreSQL</span>
+                <span class="tin-spec">WAL • Citus • Query Tuning</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Redis & Dragonfly</span>
+                <span class="tin-spec">Cluster • Lua Scripts • Streams</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Apache Kafka</span>
+                <span class="tin-spec">Partitioning • Compaction • ISR</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>ClickHouse</span>
+                <span class="tin-spec">Columnar OLAP • AggregatingMerge</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>DuckDB & SQLite</span>
+                <span class="tin-spec">Embedded Vector & In-Memory</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tin 4: Merchant Tools (Infra & Linux) -->
+          <div class="spice-tin-card category-devops">
+            <div class="tin-card-header">
+              <span class="tin-card-title">Merchant Tools // Linux & Ops</span>
+              <span class="tin-batch-number">[TIN-04]</span>
+            </div>
+            <div class="tin-items-list">
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Linux eBPF</span>
+                <span class="tin-spec">bcc • bpftrace • Network Profiling</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Kubernetes & Docker</span>
+                <span class="tin-spec">CRDs • Helm • Rootless</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Terraform & IaC</span>
+                <span class="tin-spec">AWS / GCP VPC & Bare Metal</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>Prometheus & Grafana</span>
+                <span class="tin-spec">Histograms • Alertmanager</span>
+              </div>
+              <div class="tin-item-tag">
+                <span class="tin-name"><span class="spice-bullet">◆</span>CI/CD Pipelines</span>
+                <span class="tin-spec">Hermetic Builds • Benchmarks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="section-divider container">
+      <span class="line"></span>
+      <div class="motif">
+        <span>❖</span>
+        <span>CURATED DISPATCH RECIPES</span>
+        <span>❖</span>
+      </div>
+      <span class="line"></span>
+    </div>
+
+    <!-- ======================================================================
+         SECTION 03: PROJECTS / THE RECIPE CARDS (ASYMMETRIC GRID)
+         ====================================================================== -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header-block">
+          <div class="section-cmd-label">
+            <span class="bracket">[03]</span>
+            <span>$ ls -la ./recipes --sort=heat --provenance=verified</span>
+          </div>
+          <h2 class="section-title">The Engineering Recipe Cards</h2>
+          <p class="section-desc">
+            Production-grade architectures. Each card specifies the core ingredients (stack), tasting notes (system design), visual proof of execution, and the brutal technical obstacle resolved.
+          </p>
+        </div>
+
+        <div class="projects-asymmetric-grid">
+          <!-- RECIPE 01: DhabaOS (Span 7) -->
+          <article class="recipe-card">
+            <div class="recipe-card-header">
+              <span class="recipe-id">RECIPE #01 // DISTRIBUTED ORDER FABRIC</span>
+              <span class="recipe-status-pill">● PRODUCTION DEPLOYED</span>
+            </div>
+
+            <div class="recipe-card-visual">
+              <img src="assets/project_dhaba_os.jpg" alt="DhabaOS Real-Time Order Management and Kitchen Sync Interface" loading="lazy">
+              <div class="recipe-watermark-stamp">STATION: 40+ POS MESH</div>
+            </div>
+
+            <div class="recipe-card-body">
+              <div class="recipe-title-group">
+                <h3 class="recipe-title">DhabaOS: Real-Time Kitchen Sync Engine</h3>
+                <p class="recipe-tasting-notes">"Sub-5ms order synchronization fabric with decentralized peer failover for high-volume dining networks."</p>
+              </div>
+
+              <div class="ingredients-row">
+                <span class="ingredient-tag gold-tag">Go 1.22</span>
+                <span class="ingredient-tag chili-tag">gRPC / HTTP2</span>
+                <span class="ingredient-tag">Redis Streams</span>
+                <span class="ingredient-tag">WebSockets</span>
+                <span class="ingredient-tag">SQLite WAL</span>
+                <span class="ingredient-tag">React Canvas</span>
+              </div>
+
+              <div class="technical-challenge-box">
+                <strong><span class="challenge-label">CRITICAL CHALLENGE:</span> DUAL-WRITE PHANTOM SURGES</strong>
+                During dinner peak loads with 40+ concurrent POS terminals losing internet connectivity, conflicting split-brain orders occurred. Engineered an idempotent distributed state machine with Raft-inspired vector clocks and local SQLite WAL journals that reconcile deterministically within 120ms of reconnection.
+              </div>
+
+              <div class="recipe-card-footer">
+                <span class="recipe-id">BENCHMARK: 12,000 ORDERS/HR</span>
+                <div class="recipe-links">
+                  <a href="#contact" class="recipe-link primary-link">DEMO RUNNER ↗</a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="recipe-link">SOURCE CODE ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- RECIPE 02: GaramQueue (Span 5) -->
+          <article class="recipe-card">
+            <div class="recipe-card-header">
+              <span class="recipe-id">RECIPE #02 // ZERO-COPY BROKER</span>
+              <span class="recipe-status-pill">● CRATE AUDITED</span>
+            </div>
+
+            <div class="recipe-card-visual">
+              <img src="assets/project_garam_queue.jpg" alt="GaramQueue High Throughput Event Broker Terminal Dashboard" loading="lazy">
+              <div class="recipe-watermark-stamp">SATURATION: 10GbE NIC</div>
+            </div>
+
+            <div class="recipe-card-body">
+              <div class="recipe-title-group">
+                <h3 class="recipe-title">GaramQueue: Zero-Copy Event Log</h3>
+                <p class="recipe-tasting-notes">"High-throughput pub/sub engine built in Rust using Linux io_uring for memory-mapped durability."</p>
+              </div>
+
+              <div class="ingredients-row">
+                <span class="ingredient-tag gold-tag">Rust</span>
+                <span class="ingredient-tag chili-tag">io_uring</span>
+                <span class="ingredient-tag">Tokio</span>
+                <span class="ingredient-tag">eBPF</span>
+                <span class="ingredient-tag">mmap</span>
+              </div>
+
+              <div class="technical-challenge-box">
+                <strong><span class="challenge-label">CRITICAL CHALLENGE:</span> KERNEL CONTEXT-SWITCH OVERHEAD</strong>
+                Standard read/write syscalls choked p99 latency at 8.2ms under 800k events/sec. Implemented `io_uring` ring-buffers with pinned memory rings, completely eliminating userspace-to-kernel memory copying and slashing p99 latency to 320μs.
+              </div>
+
+              <div class="recipe-card-footer">
+                <span class="recipe-id">THROUGHPUT: 1.2M MSG/SEC</span>
+                <div class="recipe-links">
+                  <a href="#contact" class="recipe-link primary-link">BENCHMARK ↗</a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="recipe-link">GITHUB ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- RECIPE 03: KhataZero (Span 5) -->
+          <article class="recipe-card">
+            <div class="recipe-card-header">
+              <span class="recipe-id">RECIPE #03 // CRYPTOGRAPHIC LEDGER</span>
+              <span class="recipe-status-pill">● FORMALLY VERIFIED</span>
+            </div>
+
+            <div class="recipe-card-visual">
+              <img src="assets/project_khatazero.jpg" alt="KhataZero Immutable Double Entry Ledger System" loading="lazy">
+              <div class="recipe-watermark-stamp">SUM EQUALITY: Δ0.0000</div>
+            </div>
+
+            <div class="recipe-card-body">
+              <div class="recipe-title-group">
+                <h3 class="recipe-title">KhataZero: Double-Entry Cryptoledger</h3>
+                <p class="recipe-tasting-notes">"Tamper-evident financial ledger with incremental Merkle proofs and zero-sum transactional guarantees."</p>
+              </div>
+
+              <div class="ingredients-row">
+                <span class="ingredient-tag gold-tag">TypeScript</span>
+                <span class="ingredient-tag">PostgreSQL</span>
+                <span class="ingredient-tag chili-tag">Merkle Trees</span>
+                <span class="ingredient-tag">SHA-256</span>
+                <span class="ingredient-tag">Zod</span>
+              </div>
+
+              <div class="technical-challenge-box">
+                <strong><span class="challenge-label">CRITICAL CHALLENGE:</span> HOT ROW LOCK CONTENTION</strong>
+                Central merchant clearing accounts experienced database row-level deadlocks under simultaneous settlements. Devised an asynchronous accumulator pipeline with shard-based journal partitioning and deterministic advisory locks.
+              </div>
+
+              <div class="recipe-card-footer">
+                <span class="recipe-id">AUDIT: 100% RECONCILED</span>
+                <div class="recipe-links">
+                  <a href="#contact" class="recipe-link primary-link">SPECS ↗</a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="recipe-link">GITHUB ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- RECIPE 04: MasalaScript (Span 7) -->
+          <article class="recipe-card">
+            <div class="recipe-card-header">
+              <span class="recipe-id">RECIPE #04 // BYTECODE VM COMPILER</span>
+              <span class="recipe-status-pill">● JIT OPTIMIZED</span>
+            </div>
+
+            <div class="recipe-card-visual">
+              <img src="assets/project_masalascript.jpg" alt="MasalaScript Bytecode Disassembler and JIT Compilation Graph" loading="lazy">
+              <div class="recipe-watermark-stamp">SPEED: 4.2x LUA 5.4</div>
+            </div>
+
+            <div class="recipe-card-body">
+              <div class="recipe-title-group">
+                <h3 class="recipe-title">MasalaScript: Domain Bytecode Engine</h3>
+                <p class="recipe-tasting-notes">"Embeddable stack VM and JIT compiler designed for microsecond-level algorithmic rule evaluation."</p>
+              </div>
+
+              <div class="ingredients-row">
+                <span class="ingredient-tag gold-tag">C++20</span>
+                <span class="ingredient-tag chili-tag">LLVM 17</span>
+                <span class="ingredient-tag">WebAssembly</span>
+                <span class="ingredient-tag">Computed GOTO</span>
+                <span class="ingredient-tag">Custom Arena</span>
+              </div>
+
+              <div class="technical-challenge-box">
+                <strong><span class="challenge-label">CRITICAL CHALLENGE:</span> BRANCH PREDICTION MISPREDICTIONS</strong>
+                Standard switch-case interpreter loops incurred severe CPU pipeline stalls. Swapped to direct threaded code using GCC/Clang Computed GOTO with custom register caches, achieving a 4.2x speedup over standard interpreted VMs.
+              </div>
+
+              <div class="recipe-card-footer">
+                <span class="recipe-id">LATENCY: &lt;140ns PER OP</span>
+                <div class="recipe-links">
+                  <a href="#contact" class="recipe-link primary-link">WASM PLAYGROUND ↗</a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="recipe-link">GITHUB ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="section-divider container">
+      <span class="line"></span>
+      <div class="motif">
+        <span>❖</span>
+        <span>HISTORICAL LEDGER & COMMITS</span>
+        <span>❖</span>
+      </div>
+      <span class="line"></span>
+    </div>
+
+    <!-- ======================================================================
+         SECTION 04: WORK HISTORY / GIT LOG TIMELINE
+         ====================================================================== -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-header-block">
+          <div class="section-cmd-label">
+            <span class="bracket">[04]</span>
+            <span>$ git log --graph --abbrev-commit --date=relative --decorate</span>
+          </div>
+          <h2 class="section-title">Production Git Log</h2>
+          <p class="section-desc">
+            Direct trace of career commits. Real engineering outcomes, architectural breakthroughs, and high-stakes migrations.
+          </p>
+        </div>
+
+        <div class="git-log-container">
+          <div class="git-log-command-bar">
+            <span class="git-cmd">* (HEAD -> production, origin/main)</span>
+            <span>Repository: /var/career/rahul-sharma.git</span>
+          </div>
+
+          <div class="git-timeline">
+            <!-- Commit 1: BharatScale -->
+            <div class="git-commit-entry">
+              <div class="commit-meta">
+                <div class="commit-hash">
+                  <span class="git-point"></span>
+                  <span>f7d2a91</span>
+                </div>
+                <div class="commit-date">2023 — Present</div>
+                <div class="commit-branch-tag">tag: v3.4-prod</div>
+              </div>
+              <div class="commit-content">
+                <h3 class="commit-role-title">Lead Distributed Systems Engineer</h3>
+                <div class="commit-company">BharatScale Cloud Systems // Bengaluru</div>
+                <ul class="commit-bullet-list">
+                  <li><strong>feat(storage):</strong> Spearheaded tier-1 distributed S3-compatible caching architecture in Rust, cutting monthly AWS cross-AZ bandwidth bills by <strong>$140,000 (42%)</strong>.</li>
+                  <li><strong>perf(grpc):</strong> Tuned internal cluster transport mesh to sustain <strong>1.8M req/sec</strong> with a p99 response time under <strong>3.8ms</strong> across 180 nodes.</li>
+                  <li><strong>refactor(consensus):</strong> Rewrote Raft election timer logic to prevent split-brain thundering herds during transient network partitions.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Commit 2: SpiceRoute Logistics -->
+            <div class="git-commit-entry">
+              <div class="commit-meta">
+                <div class="commit-hash">
+                  <span class="git-point"></span>
+                  <span>b3e810c</span>
+                </div>
+                <div class="commit-date">2021 — 2023</div>
+                <div class="commit-branch-tag">tag: v2.1-stable</div>
+              </div>
+              <div class="commit-content">
+                <h3 class="commit-role-title">Senior Backend Platform Engineer</h3>
+                <div class="commit-company">SpiceRoute Logistics // Hyderabad</div>
+                <ul class="commit-bullet-list">
+                  <li><strong>feat(dispatch):</strong> Architected real-time fleet route dispatch platform processing <strong>350,000 active consignment streams</strong> with zero dropped telemetry ticks.</li>
+                  <li><strong>fix(postgres):</strong> Diagnosed PostgreSQL table bloat caused by dead tuples under high UPDATE loads; redesigned partitioned time-series schema, reducing database CPU by 55%.</li>
+                  <li><strong>security(auth):</strong> Migrated perimeter gateway to mutual TLS (mTLS) with automated SPIFFE/SPIRE certificate rotation.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Commit 3: InfraCore Labs -->
+            <div class="git-commit-entry">
+              <div class="commit-meta">
+                <div class="commit-hash">
+                  <span class="git-point"></span>
+                  <span>40a9d2e</span>
+                </div>
+                <div class="commit-date">2019 — 2021</div>
+                <div class="commit-branch-tag">tag: v1.0-genesis</div>
+              </div>
+              <div class="commit-content">
+                <h3 class="commit-role-title">Software Engineer // Systems & Core</h3>
+                <div class="commit-company">InfraCore Labs // Pune</div>
+                <ul class="commit-bullet-list">
+                  <li><strong>feat(telemetry):</strong> Built lightweight eBPF socket listener in C to monitor packet drops across bare-metal container pods, reducing incident triage time by 70%.</li>
+                  <li><strong>perf(ci):</strong> Re-engineered distributed CI/CD build cache pipelines; cut test suite runtime from <strong>26 minutes to 3 minutes 12 seconds</strong>.</li>
+                  <li><strong>ci(docker):</strong> Replaced bloated debian runtime images with multi-stage scratch containers, shrinking average image size from 840MB to 18MB.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="section-divider container">
+      <span class="line"></span>
+      <div class="motif">
+        <span>❖</span>
+        <span>ENGINEERING CADENCE & METRICS</span>
+        <span>❖</span>
+      </div>
+      <span class="line"></span>
+    </div>
+
+    <!-- ======================================================================
+         SECTION 05: GITHUB ACTIVITY & DISPATCH METRICS
+         ====================================================================== -->
+    <section class="section" id="activity">
+      <div class="container">
+        <div class="section-header-block">
+          <div class="section-cmd-label">
+            <span class="bracket">[05]</span>
+            <span>$ cat /proc/uptime && git stats --year=2026</span>
+          </div>
+          <h2 class="section-title">Telemetry & Dispatch Velocity</h2>
+          <p class="section-desc">
+            Consistency is the foundation of high-concurrency architecture. 52 weeks of continuous shipped code, test suites, and root-cause postmortems.
+          </p>
+        </div>
+
+        <!-- Metric Boxes Strip -->
+        <div class="metrics-strip">
+          <div class="metric-box">
+            <span class="metric-number">14,280+</span>
+            <span class="metric-label">Production Commits</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-number">320 μs</span>
+            <span class="metric-label">p99 Engine Latency</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-number">99.995%</span>
+            <span class="metric-label">Lifetime SLA Maintained</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-number">0</span>
+            <span class="metric-label">P1 Data Loss Incidents</span>
+          </div>
+        </div>
+
+        <!-- Contribution Matrix -->
+        <div class="contribution-heatmap-card">
+          <div class="heatmap-header">
+            <span><strong>2,842 commits in the last 365 days</strong> // main & staging</span>
+            <span style="color: var(--cardamom-bright);">● Live Cadence Active</span>
+          </div>
+
+          <div class="heatmap-grid" id="heatmapGrid" title="Hover over cells for dispatch date and commit count">
+            <!-- Programmatically rendered by app.js for rich realistic distribution -->
+          </div>
+
+          <div class="heatmap-legend">
+            <span>Less Spice</span>
+            <span class="heat-cell heat-0"></span>
+            <span class="heat-cell heat-1"></span>
+            <span class="heat-cell heat-2"></span>
+            <span class="heat-cell heat-3"></span>
+            <span class="heat-cell heat-4"></span>
+            <span>More Spice (High Heat)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="section-divider container">
+      <span class="line"></span>
+      <div class="motif">
+        <span>❖</span>
+        <span>THE MERCHANT PHILOSOPHY</span>
+        <span>❖</span>
+      </div>
+      <span class="line"></span>
+    </div>
+
+    <!-- ======================================================================
+         SECTION 06: ABOUT / PHILOSOPHY OF THE LEDGER
+         ====================================================================== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header-block">
+          <div class="section-cmd-label">
+            <span class="bracket">[06]</span>
+            <span>$ cat ~/ledger/merchant_creed.md</span>
+          </div>
+          <h2 class="section-title">The Philosophy of the Ledger</h2>
+        </div>
+
+        <div class="about-grid">
+          <!-- Duotone Portrait with Stamp -->
+          <div class="about-portrait-wrapper">
+            <div class="portrait-frame">
+              <span class="portrait-stamp">VERIFIED BATCH #082</span>
+              <img src="assets/merchant_portrait.jpg" alt="Rahul Sharma - Senior Systems Engineer portrait" loading="lazy">
+              <div class="portrait-caption">RAHUL SHARMA // SYSTEMS ARCHITECT</div>
+            </div>
+          </div>
+
+          <!-- Personal Narrative -->
+          <div class="about-narrative">
+            <p>
+              I grew up in the historic trading hubs of North India, where century-old spice merchants kept handwritten ledgers called <strong>Bahi-Khata</strong>. In those narrow alleyways, balance wasn’t a buzzword — if your debit and credit columns didn't reconcile to zero at dusk, you simply didn't shut the shop.
+            </p>
+
+            <p>
+              When I transitioned into systems programming and high-concurrency distributed engines, I realized software architecture demands that exact same merchant discipline:
+            </p>
+
+            <div class="ledger-manifesto-box">
+              <h4>// PRINCIPLES ENGRAVED IN BRASS</h4>
+              <p>
+                <strong>1. Proportions dictate flavor:</strong> Over-engineering a microservice cluster when an embedded SQLite or optimized Go binary solves the latency target is bad cooking.<br><br>
+                <strong>2. Heat control matters:</strong> Writing lock-free code without memory barriers will burn your production server just like burnt cumin turns a whole biryani bitter.<br><br>
+                <strong>3. The ledger never lies:</strong> Profiling counters, Linux `perf`, and flamegraphs tell the real story. Don't speculate on bottlenecks — inspect the assembly.
+              </p>
+            </div>
+
+            <p>
+              Outside of tracking down cache invalidation race conditions, you'll find me slow-cooking authentic Awadhi gravies, testing mechanical keyboard switches, or reading papers on log-structured merge trees and eBPF network filtering.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION DIVIDER -->
+    <div class="section-divider container">
+      <span class="line"></span>
+      <div class="motif">
+        <span>❖</span>
+        <span>DISPATCH CHIT & TRANSMISSION</span>
+        <span>❖</span>
+      </div>
+      <span class="line"></span>
+    </div>
+
+    <!-- ======================================================================
+         SECTION 07: CONTACT / THE SPICE CHIT (RECEIPT)
+         ====================================================================== -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header-block" style="text-align: center;">
+          <div class="section-cmd-label" style="justify-content: center;">
+            <span class="bracket">[07]</span>
+            <span>$ curl -X POST https://spiceterm.dev/api/v1/dispatch</span>
+          </div>
+          <h2 class="section-title">The Official Merchant Chit</h2>
+          <p class="section-desc" style="margin: 0 auto;">
+            Itemized coordinates for contracts, technical consulting, and architectural roles. Take your receipt below.
+          </p>
+        </div>
+
+        <div class="chit-receipt-wrapper">
+          <div class="chit-receipt">
+            <div class="chit-header">
+              <h3 class="chit-title">SPICE ROUTE DEV TERMINAL</h3>
+              <p style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: #523f30;">
+                OFFICIAL DISPATCH BILL OF LADING
+              </p>
+              <div class="chit-meta-line">
+                <span>CHIT NO: #2026-DEV-0915</span>
+                <span>STATUS: PAID & READY</span>
+              </div>
+              <div class="chit-meta-line">
+                <span>OPERATOR: RAHUL SHARMA</span>
+                <span>TERMINAL: BENGALURU [IST]</span>
+              </div>
+            </div>
+
+            <table class="chit-items-table">
+              <thead>
+                <tr>
+                  <th>ITEM</th>
+                  <th>COORDINATES</th>
+                  <th style="text-align: right;">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>01. Direct Transmission</strong></td>
+                  <td><code>rahul.sharma@spiceterm.dev</code></td>
+                  <td style="text-align: right;">
+                    <button class="chit-copy-btn" data-copy="rahul.sharma@spiceterm.dev">[COPY EMAIL]</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>02. Code Ledger</strong></td>
+                  <td><code>github.com/rahul-spice-dev</code></td>
+                  <td style="text-align: right;">
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="chit-action-link">VISIT ↗</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>03. Merchant Network</strong></td>
+                  <td><code>linkedin.com/in/rahul-systems</code></td>
+                  <td style="text-align: right;">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="chit-action-link">CONNECT ↗</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>04. Dossier / Resume</strong></td>
+                  <td><code>rahul_sharma_lead_systems.pdf</code></td>
+                  <td style="text-align: right;">
+                    <button class="chit-copy-btn" id="downloadResumeBtn">[DOWNLOAD PDF]</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>05. GPG Public Key</strong></td>
+                  <td><code>4A79 D88E 19BC F402 C7E1</code></td>
+                  <td style="text-align: right;">
+                    <button class="chit-copy-btn" data-copy="4A79 D88E 19BC F402 C7E1">[COPY KEY]</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="chit-total-section">
+              <span>TOTAL CONSULTING FEE DUE</span>
+              <span class="total-amount">$0.00 (OPEN TO PROPOSALS)</span>
+            </div>
+
+            <!-- Tactile Dispatch Message Form -->
+            <form class="chit-dispatch-form" id="contactDispatchForm">
+              <div style="font-size: 0.76rem; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; color: #1a1210;">
+                $ sendmail -v --recipient="rahul"
+              </div>
+              <label class="form-label" for="senderName">Sender Identity / Company</label>
+              <input type="text" id="senderName" class="form-input" placeholder="e.g. Maya Patel (CTO @ DataScale)" required>
+
+              <label class="form-label" for="senderEmail">Return Transmission (Email)</label>
+              <input type="email" id="senderEmail" class="form-input" placeholder="e.g. maya@datascale.io" required>
+
+              <label class="form-label" for="dispatchMsg">Payload / Mission Brief</label>
+              <textarea id="dispatchMsg" class="form-textarea" placeholder="Describe the distributed architecture challenge or role..." required></textarea>
+
+              <button type="submit" class="chit-submit-btn" id="submitDispatchBtn">
+                [ TRANSMIT DISPATCH // STAMP SEAL ]
+              </button>
+            </form>
+
+            <div class="chit-barcode">
+              <div class="barcode-strip" aria-hidden="true"></div>
+              <div class="barcode-text">* CERTIFIED SPICE TERMINAL BATCH 2026 *</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       TERMINAL FOOTER
+       ======================================================================== -->
+  <footer class="terminal-footer">
+    <div class="container footer-inner">
+      <div>
+        <span>Handcrafted in pure HTML/CSS/JS. Zero bloated frameworks. Built like a cast-iron skillet.</span>
+      </div>
+      <div>
+        <span>© 2026 Rahul Sharma // All rights reserved. Terminal version 4.2.1-lts.</span>
+      </div>
+      <div>
+        <span>Host uptime: <span id="uptimeCounter" style="color: var(--turmeric);">142 days, 18 hours, 24 mins</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Alert -->
+  <div class="terminal-toast" id="terminalToast" role="alert" aria-live="polite">
+    <span class="toast-prefix">❯</span>
+    <span id="toastMessage">Copied to clipboard.</span>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1611 @@
+/* ==========================================================================
+   INDIAN SPICE MARKET MEETS DEV TERMINAL — CORE DESIGN SYSTEM
+   Palette: Deep Charcoal, Turmeric Yellow, Chili Red, Cardamom Green, Warm Off-White
+   Anti-AI-Slop: Hard borders, tactile offsets, authentic typography contrast
+   ========================================================================== */
+
+:root {
+  /* Color Tokens */
+  --bg-primary: #120c0b;
+  --bg-surface: #1a1210;
+  --bg-surface-elevated: #241a17;
+  --bg-surface-highlight: #2f221e;
+  --bg-card: #1e1513;
+
+  /* Spice Accents */
+  --turmeric: #E8A93B;
+  --turmeric-dim: #8b6522;
+  --turmeric-faint: rgba(232, 169, 59, 0.08);
+  --turmeric-glow: rgba(232, 169, 59, 0.2);
+
+  --chili: #C1441E;
+  --chili-dim: #7d2910;
+  --chili-faint: rgba(193, 68, 30, 0.1);
+
+  --cardamom: #4E6E4E;
+  --cardamom-bright: #689268;
+  --cardamom-dim: #2f442f;
+  --cardamom-faint: rgba(78, 110, 78, 0.15);
+
+  --saffron-wash: #f0be65;
+  --brass-border: #4d3828;
+  --border-subtle: #2d1f1b;
+  --border-strong: #3f2c25;
+  --border-terminal: #543b32;
+
+  /* Typography Colors */
+  --text-primary: #F2E8D8;
+  --text-secondary: #c9bbae;
+  --text-muted: #8e7d70;
+  --text-dim: #5c4f46;
+
+  /* Fonts */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+
+  /* Layout & Spacing */
+  --max-width: 1200px;
+  --header-height: 52px;
+  --border-width: 1.5px;
+  --radius-sharp: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Tactile Shadows (Hard 2D offsets, NO fuzzy blur) */
+  --shadow-tactile-sm: 2px 2px 0px #090605;
+  --shadow-tactile-md: 4px 4px 0px #090605;
+  --shadow-tactile-lg: 6px 6px 0px #090605;
+  --shadow-turmeric: 4px 4px 0px var(--turmeric-dim);
+  --shadow-chili: 4px 4px 0px var(--chili-dim);
+}
+
+/* Base Reset & Smooth Scrolling */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 24px);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 12, 11, 0.94), rgba(18, 12, 11, 0.98));
+  background-size: 32px 32px, 100% 100%;
+  color: var(--text-primary);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Custom Monospace Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-subtle);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border: 1px solid var(--bg-surface);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--turmeric-dim);
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--turmeric);
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+a:hover {
+  color: var(--saffron-wash);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==========================================================================
+   STICKY TERMINAL TOP BAR & CHROME
+   ========================================================================== */
+.terminal-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background-color: rgba(26, 18, 16, 0.95);
+  border-bottom: 1px solid var(--border-strong);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.terminal-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.terminal-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.terminal-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.dot-red { background-color: var(--chili); }
+.dot-yellow { background-color: var(--turmeric); }
+.dot-green { background-color: var(--cardamom-bright); }
+
+.terminal-prompt-label {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.terminal-prompt-label .host {
+  color: var(--turmeric);
+}
+
+.terminal-prompt-label .path {
+  color: var(--text-muted);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background-color: var(--cardamom-faint);
+  border: 1px solid var(--cardamom);
+  color: #a4caa4;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.status-pulse {
+  width: 6px;
+  height: 6px;
+  background-color: var(--cardamom-bright);
+  border-radius: 50%;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+/* Nav Menu */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 18px;
+}
+
+.nav-item a {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.nav-item a .nav-index {
+  color: var(--turmeric);
+  font-size: 0.72rem;
+}
+
+.nav-item a:hover {
+  color: var(--text-primary);
+  border-color: var(--border-terminal);
+  background-color: var(--bg-surface-elevated);
+}
+
+.nav-item a.active {
+  color: var(--turmeric);
+  border-color: var(--turmeric-dim);
+  background-color: var(--turmeric-faint);
+}
+
+/* Mobile Nav Toggle */
+.mobile-nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--turmeric);
+  font-family: var(--font-mono);
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   HERO SECTION: SPICE MATRIX & WHOAMI BOOT SEQUENCE
+   ========================================================================== */
+.hero-section {
+  padding-top: calc(var(--header-height) + 40px);
+  padding-bottom: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('assets/hero_spices.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  filter: contrast(130%) grayscale(20%) sepia(20%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-overlay-grain {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to bottom, 
+      rgba(18, 12, 11, 0.4) 0%, 
+      rgba(18, 12, 11, 0.85) 60%, 
+      rgba(18, 12, 11, 1) 100%
+    );
+  z-index: 1;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ledger-serial-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  font-size: 0.72rem;
+  color: var(--turmeric);
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-strong);
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ledger-serial-tag .seal-icon {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 4.8vw, 3.8rem);
+  color: var(--text-primary);
+  line-height: 1.05;
+  font-feature-settings: "swsh" 1;
+}
+
+.hero-title .title-italic {
+  font-style: italic;
+  color: var(--turmeric);
+  font-weight: 400;
+}
+
+.hero-tagline {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 580px;
+  border-left: 2px solid var(--turmeric-dim);
+  padding-left: 16px;
+}
+
+.hero-tagline strong {
+  color: var(--text-primary);
+}
+
+.hero-tagline .highlight-chili {
+  color: #ea704b;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* Tactile Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: var(--border-width) solid transparent;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.btn-primary {
+  background-color: var(--turmeric);
+  color: #150e0c;
+  border-color: #f7ca72;
+  box-shadow: var(--shadow-tactile-md);
+}
+
+.btn-primary:hover {
+  background-color: var(--saffron-wash);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #090605;
+  color: #0d0908;
+}
+
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #090605;
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-terminal);
+  box-shadow: var(--shadow-tactile-md);
+}
+
+.btn-secondary:hover {
+  border-color: var(--turmeric);
+  color: var(--turmeric);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #090605;
+}
+
+.btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #090605;
+}
+
+/* Interactive Hero Terminal Box */
+.terminal-console-box {
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-terminal);
+  box-shadow: var(--shadow-tactile-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.terminal-console-titlebar {
+  background-color: var(--bg-surface-elevated);
+  border-bottom: 1px solid var(--border-strong);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.terminal-console-titlebar .title-text {
+  color: var(--text-secondary);
+}
+
+.terminal-console-body {
+  padding: 16px;
+  min-height: 280px;
+  max-height: 380px;
+  overflow-y: auto;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  background-color: rgba(22, 14, 12, 0.98);
+}
+
+.terminal-log-line {
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+
+.terminal-log-line .cmd-prompt {
+  color: var(--turmeric);
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.terminal-log-line .cmd-text {
+  color: var(--text-primary);
+}
+
+.terminal-log-line .cmd-output {
+  color: var(--text-secondary);
+  padding-left: 16px;
+  border-left: 2px solid var(--border-strong);
+  margin-top: 3px;
+  margin-bottom: 8px;
+}
+
+.terminal-log-line .highlight-green {
+  color: var(--cardamom-bright);
+}
+
+.terminal-log-line .highlight-red {
+  color: var(--chili);
+}
+
+.terminal-log-line .highlight-gold {
+  color: var(--turmeric);
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background-color: var(--bg-surface-highlight);
+  border-top: 1px solid var(--border-strong);
+  gap: 8px;
+}
+
+.terminal-input-prompt {
+  color: var(--turmeric);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.terminal-cli-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-primary);
+}
+
+.terminal-quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 14px;
+  background-color: var(--bg-surface);
+  border-top: 1px dashed var(--border-subtle);
+  font-size: 0.7rem;
+}
+
+.terminal-quick-chips span {
+  color: var(--text-dim);
+}
+
+.quick-cmd-btn {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  padding: 2px 7px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.quick-cmd-btn:hover {
+  border-color: var(--turmeric);
+  color: var(--turmeric);
+  background-color: var(--turmeric-faint);
+}
+
+/* ==========================================================================
+   SECTION COMMON CHROMES & DIVIDERS
+   ========================================================================== */
+.section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+.section-divider .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+.section-divider .motif {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--turmeric-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-surface);
+}
+
+.section-header-block {
+  margin-bottom: 40px;
+}
+
+.section-cmd-label {
+  font-size: 0.82rem;
+  color: var(--turmeric);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-cmd-label .bracket {
+  color: var(--chili);
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.section-desc {
+  color: var(--text-secondary);
+  max-width: 650px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   TECH STACK: THE SPICE TIN RACK ($ cat stack.json)
+   ========================================================================== */
+.stack-rack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.spice-tin-card {
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-strong);
+  padding: 20px;
+  box-shadow: var(--shadow-tactile-sm);
+  position: relative;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.spice-tin-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-terminal);
+}
+
+.spice-tin-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--border-strong);
+}
+
+.spice-tin-card.category-languages::before { background: var(--turmeric); }
+.spice-tin-card.category-backend::before { background: var(--chili); }
+.spice-tin-card.category-storage::before { background: var(--cardamom-bright); }
+.spice-tin-card.category-devops::before { background: #b89355; }
+
+.tin-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px dashed var(--border-subtle);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.tin-card-title {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.tin-batch-number {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+}
+
+.tin-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tin-item-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-strong);
+  padding: 6px 10px;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.tin-item-tag:hover {
+  border-color: var(--turmeric-dim);
+  background-color: var(--bg-surface-highlight);
+}
+
+.tin-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tin-name .spice-bullet {
+  color: var(--turmeric);
+  font-size: 0.7rem;
+}
+
+.tin-spec {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   PROJECTS: THE RECIPE CARDS (ASYMMETRIC GRID)
+   ========================================================================== */
+.projects-asymmetric-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 32px;
+}
+
+/* Project Card Base */
+.recipe-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border-strong);
+  box-shadow: var(--shadow-tactile-md);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.recipe-card:hover {
+  border-color: var(--turmeric);
+  transform: translateY(-4px) skew(-0.3deg);
+  box-shadow: 8px 8px 0px #090605;
+}
+
+/* Asymmetry: Different Spans and Alignments */
+.recipe-card:nth-child(1) {
+  grid-column: span 7;
+}
+
+.recipe-card:nth-child(2) {
+  grid-column: span 5;
+}
+
+.recipe-card:nth-child(3) {
+  grid-column: span 5;
+}
+
+.recipe-card:nth-child(4) {
+  grid-column: span 7;
+}
+
+.recipe-card-header {
+  padding: 14px 18px;
+  background-color: var(--bg-surface-elevated);
+  border-bottom: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recipe-id {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--turmeric);
+  font-weight: 600;
+}
+
+.recipe-status-pill {
+  font-size: 0.68rem;
+  padding: 2px 7px;
+  border: 1px solid var(--cardamom);
+  background-color: var(--cardamom-faint);
+  color: #a7cca7;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.recipe-card-visual {
+  position: relative;
+  border-bottom: 1.5px solid var(--border-strong);
+  background-color: #0b0706;
+  overflow: hidden;
+}
+
+.recipe-card-visual img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: top;
+  filter: contrast(108%) brightness(95%);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.recipe-card:hover .recipe-card-visual img {
+  transform: scale(1.02);
+  filter: contrast(115%) brightness(100%);
+}
+
+.recipe-watermark-stamp {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  background: rgba(18, 12, 11, 0.88);
+  border: 1px solid var(--border-terminal);
+  padding: 3px 8px;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(4px);
+}
+
+.recipe-card-body {
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 16px;
+}
+
+.recipe-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recipe-title {
+  font-size: 1.7rem;
+  color: var(--text-primary);
+}
+
+.recipe-tasting-notes {
+  font-size: 0.88rem;
+  color: var(--turmeric);
+  font-family: var(--font-mono);
+  font-style: italic;
+}
+
+/* Ingredients Tags */
+.ingredients-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ingredient-tag {
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.ingredient-tag.chili-tag {
+  border-color: var(--chili-dim);
+  color: #ea7452;
+}
+
+.ingredient-tag.gold-tag {
+  border-color: var(--turmeric-dim);
+  color: var(--turmeric);
+}
+
+/* Technical Challenge Box */
+.technical-challenge-box {
+  background-color: var(--bg-surface);
+  border-left: 3px solid var(--chili);
+  border-top: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 12px 14px;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.technical-challenge-box strong {
+  color: var(--text-primary);
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.technical-challenge-box .challenge-label {
+  color: var(--chili);
+}
+
+.recipe-card-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recipe-links {
+  display: flex;
+  gap: 12px;
+}
+
+.recipe-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-surface-elevated);
+}
+
+.recipe-link:hover {
+  border-color: var(--turmeric);
+  background-color: var(--turmeric-faint);
+  color: var(--turmeric);
+}
+
+.recipe-link.primary-link {
+  background-color: var(--turmeric-faint);
+  border-color: var(--turmeric-dim);
+  color: var(--turmeric);
+}
+
+.recipe-link.primary-link:hover {
+  background-color: var(--turmeric);
+  color: #120c0b;
+}
+
+/* ==========================================================================
+   WORK HISTORY / EXPERIENCE: GIT LOG TREE
+   ========================================================================== */
+.git-log-container {
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-terminal);
+  box-shadow: var(--shadow-tactile-md);
+  padding: 24px;
+  position: relative;
+}
+
+.git-log-command-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.git-log-command-bar .git-cmd {
+  color: var(--turmeric);
+}
+
+.git-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: relative;
+}
+
+.git-commit-entry {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  position: relative;
+}
+
+.commit-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.commit-hash {
+  font-size: 0.78rem;
+  color: var(--turmeric);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.commit-hash .git-point {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--turmeric);
+  box-shadow: 0 0 0 3px var(--bg-surface-highlight);
+}
+
+.commit-date {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+.commit-branch-tag {
+  font-size: 0.65rem;
+  color: var(--cardamom-bright);
+  border: 1px solid var(--cardamom-dim);
+  padding: 1px 5px;
+  width: fit-content;
+  text-transform: uppercase;
+}
+
+.commit-content {
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-strong);
+  padding: 16px 20px;
+  border-left: 3px solid var(--turmeric-dim);
+}
+
+.commit-role-title {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+}
+
+.commit-company {
+  font-size: 0.82rem;
+  color: var(--turmeric);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.commit-bullet-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.commit-bullet-list li {
+  position: relative;
+  padding-left: 18px;
+  line-height: 1.5;
+}
+
+.commit-bullet-list li::before {
+  content: "❯";
+  position: absolute;
+  left: 0;
+  color: var(--turmeric-dim);
+  font-size: 0.75rem;
+}
+
+.commit-bullet-list strong {
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   GITHUB DISPATCH MATRIX & METRICS
+   ========================================================================== */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.metric-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-number {
+  font-size: 1.8rem;
+  font-family: var(--font-display);
+  color: var(--turmeric);
+  line-height: 1.1;
+}
+
+.metric-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.contribution-heatmap-card {
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-terminal);
+  padding: 20px;
+  box-shadow: var(--shadow-tactile-sm);
+}
+
+.heatmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 0.78rem;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(52, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  gap: 3px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.heat-cell {
+  width: 10px;
+  height: 10px;
+  background-color: var(--border-subtle);
+  border-radius: 1px;
+  transition: transform 0.1s ease;
+  cursor: pointer;
+}
+
+.heat-cell:hover {
+  transform: scale(1.3);
+  outline: 1px solid var(--turmeric);
+}
+
+.heat-0 { background-color: #211714; }
+.heat-1 { background-color: #3b2d22; }
+.heat-2 { background-color: #614620; }
+.heat-3 { background-color: #9d6f21; }
+.heat-4 { background-color: var(--turmeric); }
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   ABOUT: PHILOSOPHY OF THE LEDGER & DUOTONE PORTRAIT
+   ========================================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.about-portrait-wrapper {
+  position: relative;
+}
+
+.portrait-frame {
+  position: relative;
+  border: 2px solid var(--border-terminal);
+  background-color: var(--bg-surface);
+  padding: 10px;
+  box-shadow: var(--shadow-tactile-lg);
+}
+
+.portrait-frame img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: contrast(120%) sepia(25%) brightness(95%);
+  border: 1px solid var(--border-strong);
+}
+
+.portrait-stamp {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background-color: var(--chili);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border: 1.5px solid #000;
+  box-shadow: 2px 2px 0px #000;
+  transform: rotate(5deg);
+}
+
+.portrait-caption {
+  margin-top: 10px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  border-top: 1px dashed var(--border-subtle);
+  padding-top: 6px;
+}
+
+.about-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.about-narrative p strong {
+  color: var(--turmeric);
+}
+
+.ledger-manifesto-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--turmeric);
+  padding: 16px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  margin-top: 10px;
+}
+
+.ledger-manifesto-box h4 {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--turmeric);
+  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+}
+
+/* ==========================================================================
+   CONTACT / FOOTER: THE SPICE CHIT / RECEIPT
+   ========================================================================== */
+.contact-section {
+  padding-bottom: 60px;
+}
+
+.chit-receipt-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.chit-receipt {
+  background-color: #f7efe4;
+  color: #1a1210;
+  padding: 36px 32px;
+  border: 1.5px solid #d4c2aa;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.6);
+  position: relative;
+  font-family: var(--font-mono);
+}
+
+/* Jagged perforated top & bottom receipt effect */
+.chit-receipt::before,
+.chit-receipt::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-size: 16px 8px;
+  background-repeat: repeat-x;
+}
+
+.chit-receipt::before {
+  top: -8px;
+  background-image: radial-gradient(circle at 8px 0, transparent 8px, #f7efe4 8.5px);
+}
+
+.chit-receipt::after {
+  bottom: -8px;
+  background-image: radial-gradient(circle at 8px 8px, transparent 8px, #f7efe4 8.5px);
+}
+
+.chit-header {
+  text-align: center;
+  border-bottom: 2px dashed #9d8366;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.chit-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: #1a1210;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.chit-meta-line {
+  font-size: 0.74rem;
+  color: #63503f;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.chit-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 0.82rem;
+}
+
+.chit-items-table th {
+  text-align: left;
+  border-bottom: 1px solid #c2ad95;
+  padding: 8px 4px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: #5c4736;
+}
+
+.chit-items-table td {
+  padding: 10px 4px;
+  border-bottom: 1px dashed #ded0bd;
+  color: #1f1614;
+}
+
+.chit-items-table tr:hover td {
+  background-color: rgba(232, 169, 59, 0.15);
+}
+
+.chit-action-link {
+  color: #9c3314;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.chit-action-link:hover {
+  color: #c1441e;
+  text-decoration: underline;
+}
+
+.chit-copy-btn {
+  background: transparent;
+  border: 1px solid #ad957e;
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  cursor: pointer;
+  color: #453225;
+  margin-left: 6px;
+  transition: all 0.1s ease;
+}
+
+.chit-copy-btn:hover {
+  background-color: #e5d7c3;
+  color: #1a1210;
+}
+
+.chit-total-section {
+  border-top: 2px solid #5c4736;
+  border-bottom: 2px solid #5c4736;
+  padding: 12px 4px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.chit-total-section .total-amount {
+  color: #274b27;
+  font-size: 1.05rem;
+}
+
+/* Quick Dispatch Terminal Form */
+.chit-dispatch-form {
+  margin-top: 20px;
+  background-color: #ede2d3;
+  border: 1px solid #bda891;
+  padding: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: #4a382c;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ad957e;
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #1a1210;
+  margin-bottom: 12px;
+  outline: none;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: #9c3314;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.chit-submit-btn {
+  width: 100%;
+  background-color: #1a1210;
+  color: #f7efe4;
+  border: 2px solid #000;
+  padding: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.4);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.chit-submit-btn:hover {
+  background-color: #9c3314;
+  color: #fff;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.6);
+}
+
+.chit-submit-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.6);
+}
+
+.chit-barcode {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.barcode-strip {
+  height: 38px;
+  background: repeating-linear-gradient(
+    90deg,
+    #1a1210,
+    #1a1210 2px,
+    transparent 2px,
+    transparent 4px,
+    #1a1210 4px,
+    #1a1210 7px,
+    transparent 7px,
+    transparent 8px
+  );
+  width: 70%;
+  margin: 0 auto 6px;
+}
+
+.barcode-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: #63503f;
+}
+
+/* Terminal Site Footer */
+.terminal-footer {
+  margin-top: 60px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border-strong);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.terminal-footer .footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminal-footer a {
+  color: var(--turmeric);
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+.terminal-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: var(--bg-surface-elevated);
+  border: 1.5px solid var(--turmeric);
+  color: var(--text-primary);
+  padding: 10px 16px;
+  font-size: 0.8rem;
+  box-shadow: var(--shadow-tactile-md);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.terminal-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.terminal-toast .toast-prefix {
+  color: var(--cardamom-bright);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .projects-asymmetric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-card:nth-child(n) {
+    grid-column: span 1;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portrait-frame {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background-color: var(--bg-surface);
+    border-bottom: 1.5px solid var(--border-terminal);
+    flex-direction: column;
+    padding: 16px 20px;
+    gap: 10px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .git-commit-entry {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .chit-receipt {
+    padding: 24px 16px;
+  }
+}
